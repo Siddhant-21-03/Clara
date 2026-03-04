@@ -1,0 +1,41 @@
+[Demo Call Transcript - FireShield Protection Services]
+Date: 2026-02-15
+Participants: Sales Rep (Clara Team), Mike Johnson (Owner, FireShield Protection Services)
+
+Sales Rep: Hey Mike, thanks for taking the time today. I know you're busy. So tell me a little about FireShield — what kind of calls are you guys handling day to day?
+
+Mike Johnson: Yeah, appreciate it. So we're a full-service fire protection company based out of Tampa, Florida. We do fire sprinkler systems, fire alarms, fire extinguishers, and we also do backflow testing. Most of our work is commercial — warehouses, office buildings, some retail.
+
+Sales Rep: Got it. And what's the call volume like? Are you getting a lot of after-hours stuff?
+
+Mike Johnson: Oh yeah, that's actually our biggest headache. During the day it's fine, our office manager Sarah handles everything. But after 5 PM, and especially weekends, we get emergency calls — sprinkler leaks, alarm malfunctions, that kind of thing. Right now those just go to my cell phone and honestly I'm drowning.
+
+Sales Rep: That's exactly what Clara is built for. So walk me through what happens when someone calls after hours with, say, a sprinkler leak.
+
+Mike Johnson: Well ideally they'd reach someone who can dispatch. Right now it's me. If I don't answer, they leave a voicemail and sometimes I don't get to it until morning. Which is terrible for emergencies. If there's a sprinkler head that burst, water is flooding everywhere — that needs immediate response.
+
+Sales Rep: Right, absolutely. So with Clara, the AI agent would answer, determine if it's an emergency, and if it is, immediately collect their info — name, callback number, address — and try to transfer to your on-call person. If the transfer fails, it would take the message and flag it as urgent.
+
+Mike Johnson: That would be incredible. The other thing is, we get a lot of calls that aren't emergencies. Like someone wanting to schedule their annual inspection, or asking about getting a quote on a new system. Those don't need to wake me up at 2 AM.
+
+Sales Rep: Exactly. Clara would handle those differently — collect the details, let the caller know someone will follow up during business hours, and create a ticket.
+
+Mike Johnson: Yeah that's what we need. We also use ServiceTrade for our job management. Would Clara work with that?
+
+Sales Rep: It can integrate with ServiceTrade. We'd set that up during onboarding. There might be some specific rules about what jobs Clara creates versus what your team handles manually.
+
+Mike Johnson: OK cool. The main thing for me is emergencies get handled fast and the non-urgent stuff doesn't get lost.
+
+Sales Rep: Perfect. Let me show you how Clara sounds on a call...
+
+[Demo interaction follows - not relevant for extraction]
+
+Sales Rep: So what do you think?
+
+Mike Johnson: I'm impressed. Let's move forward with this.
+
+Sales Rep: Excellent. We'll get you set up with an onboarding call where we nail down all the specific details — exact hours, routing numbers, emergency definitions, all that.
+
+Mike Johnson: Sounds good. Our office hours are generally 8 to 5 Monday through Friday, but I'll confirm the exact times during onboarding.
+
+Sales Rep: Perfect. Talk soon, Mike.

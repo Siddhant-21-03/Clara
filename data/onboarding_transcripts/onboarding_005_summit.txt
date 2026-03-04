@@ -1,0 +1,64 @@
+[Onboarding Call Transcript - Summit Facility Maintenance]
+Date: 2026-03-03
+Participants: Onboarding Specialist (Clara Team), Tom Bradley (VP of Operations, Summit Facility Maintenance), Karen Liu (Dispatch Manager, Summit)
+
+Onboarding Specialist: Tom, Karen — ready to go through the details. Business hours?
+
+Tom Bradley: Monday through Saturday, 6:00 AM to 6:00 PM Central. Dallas, Texas. Sunday we're closed but have on-call for emergencies only.
+
+Onboarding Specialist: Confirmed — Central time, and Sunday is after-hours.
+
+Karen Liu: Correct. And holidays — we observe major federal holidays. On holidays, treat it like Sunday — after-hours with emergency coverage only.
+
+Onboarding Specialist: We can flag holidays. Let's define emergencies.
+
+Tom Bradley: OK, so this is where it gets detailed because we're multi-trade. Here's how we break it down:
+
+Plumbing emergencies: burst pipes, active flooding, sewage backup, no hot water in a medical facility or restaurant.
+
+HVAC emergencies: total system failure in extreme weather, gas leak, CO alarm, refrigeration failure in food service.
+
+Electrical emergencies: power outage affecting entire building or critical systems, sparking or fire risk, generator failure.
+
+General: elevator entrapment — that's always emergency, immediate dispatch. Roof leak actively causing damage. Any safety hazard like structural damage or gas smell.
+
+Karen Liu: And I'd add — any call from a property manager marked as "urgent" in their initial description, treat as emergency. Our property management clients pay premium for that.
+
+Onboarding Specialist: Got it. Now routing — this is complex because of multi-trade. How should Clara route?
+
+Karen Liu: So here's how it works. After hours emergencies:
+
+For plumbing: call our plumbing on-call at 214-555-0301. Timeout 45 seconds.
+For HVAC: call HVAC on-call at 214-555-0302. Timeout 45 seconds.
+For electrical: call electrical on-call at 214-555-0303. Timeout 45 seconds.
+For general/other: call the general dispatch line at 214-555-0300. Timeout 45 seconds.
+For elevator entrapment: call 214-555-0309 immediately, this is our elevator emergency line. Only 30 seconds timeout.
+
+If the trade-specific line doesn't answer, fall back to general dispatch at 214-555-0300. If general dispatch doesn't answer, try Tom at 214-555-0199. If nobody answers, take the message with name, number, address, unit or suite number, description, and the trade type. Promise callback within 15 minutes.
+
+Onboarding Specialist: That's very thorough. During business hours?
+
+Karen Liu: During hours, everything goes to our main dispatch at 214-555-0100. I'm there or one of my team is. If no answer in 20 seconds, try 214-555-0101, that's our backup dispatch position. We always have someone.
+
+Onboarding Specialist: Non-emergency after hours?
+
+Tom Bradley: Collect the info — name, number, property address, unit if applicable, description of issue, and which trade they need. Tell them we'll have someone reach out by 8 AM next business day. Don't transfer non-emergencies after hours.
+
+Onboarding Specialist: ServiceTrade?
+
+Karen Liu: Yes, we use ServiceTrade heavily. Rules:
+- Non-emergency service requests can be auto-created, but they must include the property address and trade type.
+- Emergency calls should NOT create ServiceTrade jobs — our dispatch handles those.
+- Never auto-create janitorial requests in ServiceTrade. Janitorial goes through a different system.
+
+Tom Bradley: Also, important — if someone mentions a lease obligation or a penalty clause, flag it as high priority even if it's not a physical emergency. We have SLA contracts with property managers and missing those has financial consequences.
+
+Onboarding Specialist: Smart. Address?
+
+Tom Bradley: Main office: 1500 Commerce Street, Suite 400, Dallas, Texas, 75201.
+
+Karen Liu: And the greeting should be: "Thank you for calling Summit Facility Maintenance. This is Clara. How can I help you today?"
+
+Onboarding Specialist: Excellent. I'll build this out and send confirmation.
+
+Tom Bradley: Thanks. Looking forward to going live.

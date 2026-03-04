@@ -1,0 +1,99 @@
+{
+  "company_name": "Apex Electrical Services",
+  "version": "v2",
+  "source": "onboarding_call",
+  "created_at": "2026-03-04T15:52:41.404302+00:00Z",
+  "updated_at": "2026-03-04T15:52:41.756734+00:00Z",
+  "business_hours": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "start": "07:00",
+    "end": "16:30",
+    "timezone": "America/Denver",
+    "saturday_hours": null,
+    "notes": [
+      "Sunday closed / after-hours only",
+      "Saturday closed / after-hours only"
+    ]
+  },
+  "office_address": "7890 East McDowell Road, Suite 102, Phoenix, Arizona, 85008",
+  "services_supported": [
+    "Electrical",
+    "Generator Maintenance",
+    "Lighting Services",
+    "Electrical Panel Upgrades"
+  ],
+  "emergency_definition": [
+    "Complete power outage",
+    "Sparking",
+    "Exposed live wires",
+    "Generator failure",
+    "Electrical fire",
+    "And — this is new since the demo — we also want to treat any electrical issue at a medical facility as emergency, even if it's not life-threatening",
+    "Emergency routing after hours"
+  ],
+  "emergency_routing_rules": {
+    "primary_contact": {
+      "name": null,
+      "phone": "480-555-0300",
+      "role": "on-call",
+      "timeout_seconds": 30
+    },
+    "secondary_contact": {
+      "name": "David Rodriguez",
+      "phone": "480-555-0155",
+      "role": null,
+      "timeout_seconds": 60
+    },
+    "additional_contacts": [],
+    "fallback": "Take message (name, number, address, issue description) and assure callback",
+    "callback_promise": "20 minutes",
+    "transfer_timeout_seconds": 30
+  },
+  "non_emergency_routing_rules": {
+    "during_hours": "Route to main office",
+    "after_hours": "Collect caller information; Promise callback next business day; Promise callback by 9 AM; Do not transfer after hours"
+  },
+  "call_transfer_rules": {
+    "timeout_seconds": 30,
+    "max_retries": 2,
+    "failure_message": "I apologize, I wasn't able to connect you. Let me take your information and someone will call you back shortly."
+  },
+  "business_hours_routing": {
+    "contacts": [
+      {
+        "priority": 1,
+        "name": null,
+        "phone": "480-555-0100",
+        "role": "dispatch",
+        "timeout_seconds": 25
+      },
+      {
+        "priority": 2,
+        "name": null,
+        "phone": "480-555-0101",
+        "role": null,
+        "timeout_seconds": 25
+      }
+    ]
+  },
+  "integration_constraints": [
+    "For now, don't create any jobs in ServiceTrade automatically"
+  ],
+  "special_rules": [
+    "And — this is new since the demo — we also want to treat any electrical issue at a medical facility as emergency, even if it's not life-threatening",
+    "David Rodriguez: Yes — if a caller mentions a permit inspection or a city inspector, route that to Jenny directly, even after hours"
+  ],
+  "greeting": "Thank you for calling Apex Electrical Services, this is Clara. How can I help you?",
+  "after_hours_flow_summary": "1. Greet caller\n2. Ask purpose of call\n3. Determine if emergency or non-emergency\n4. Emergency triggers: Complete power outage, Sparking, Exposed live wires...\n5. Emergency: collect name, number, address -> transfer chain: on-call (480-555-0300) -> David Rodriguez (480-555-0155)\n6. If transfer fails: take message, assure callback\n7. Non-emergency: collect info, promise callback next business day\n8. Ask 'Is there anything else I can help with?'\n9. Close call",
+  "office_hours_flow_summary": "1. Greet caller\n2. Ask purpose of call\n3. Collect caller name and callback number\n4. Transfer to: dispatch (480-555-0100) -> None (480-555-0101)\n5. If transfer fails: take message, confirm follow-up\n6. Ask 'Is there anything else I can help with?'\n7. Close call",
+  "questions_or_unknowns": [],
+  "notes": "Auto-extracted from onboarding call transcript for Apex Electrical Services. Emergency contact chain: 2 contact(s) configured. Services: 2 identified. Emergency triggers: 7 defined. Special handling rules: 2 captured.",
+  "_source_file": "demo_003_apex.txt",
+  "account_id": "ACC-003"
+}

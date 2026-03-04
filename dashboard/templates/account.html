@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ account.company_name or account.account_id }} — Clara Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .breadcrumb { margin-bottom: 20px; }
+        .breadcrumb a { color: #60a5fa; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { color: #64748b; }
+        header { background: linear-gradient(135deg, #1e293b, #334155); padding: 30px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #475569; }
+        header h1 { font-size: 24px; color: #f1f5f9; }
+        header .account-id { color: #60a5fa; font-family: monospace; font-size: 14px; }
+        .tabs { display: flex; gap: 4px; margin-bottom: 20px; background: #1e293b; border-radius: 10px; padding: 4px; border: 1px solid #334155; }
+        .tab { padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #94a3b8; transition: all 0.2s; border: none; background: none; }
+        .tab:hover { color: #e2e8f0; background: #334155; }
+        .tab.active { background: #60a5fa; color: #0f172a; font-weight: 600; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .panel { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; margin-bottom: 20px; }
+        .panel h2 { font-size: 18px; color: #f1f5f9; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #334155; }
+        .panel h3 { font-size: 15px; color: #94a3b8; margin: 16px 0 8px; }
+        .field { margin-bottom: 12px; }
+        .field .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+        .field .value { color: #e2e8f0; }
+        .field .value.missing { color: #f87171; font-style: italic; }
+        .json-block { background: #0f172a; border-radius: 8px; padding: 16px; font-family: 'Fira Code', monospace; font-size: 13px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; max-height: 600px; overflow-y: auto; border: 1px solid #334155; }
+        .prompt-block { background: #0f172a; border-radius: 8px; padding: 20px; font-size: 14px; line-height: 1.8; overflow-y: auto; max-height: 700px; border: 1px solid #334155; white-space: pre-wrap; }
+        .diff-container { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .diff-panel { background: #0f172a; border-radius: 8px; padding: 16px; border: 1px solid #334155; }
+        .diff-panel h3 { color: #94a3b8; font-size: 14px; margin-bottom: 10px; }
+        .diff-panel.v1 { border-left: 3px solid #60a5fa; }
+        .diff-panel.v2 { border-left: 3px solid #34d399; }
+        .change-item { background: #1e293b; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 3px solid #fbbf24; }
+        .change-item .field-name { color: #fbbf24; font-family: monospace; font-size: 14px; font-weight: 600; }
+        .change-item .action { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-left: 8px; }
+        .change-item .action.updated { background: #422006; color: #fbbf24; }
+        .change-item .action.merged { background: #1e3a5f; color: #60a5fa; }
+        .change-item .action.resolved { background: #14532d; color: #34d399; }
+        .change-item .reason { color: #94a3b8; font-size: 13px; margin-top: 6px; }
+        .services-list { display: flex; flex-wrap: wrap; gap: 6px; }
+        .services-list span { background: #334155; color: #94a3b8; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+        .unknowns-list { list-style: none; }
+        .unknowns-list li { padding: 6px 0; color: #fbbf24; font-size: 13px; }
+        .unknowns-list li::before { content: "⚠ "; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #334155; }
+        th { color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        td { color: #e2e8f0; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">← Dashboard</a> <span>/ {{ account.company_name or account.account_id }}</span>
+        </div>
+
+        <header>
+            <span class="account-id">{{ account.account_id }}</span>
+            <h1>{{ account.company_name or 'Unknown Company' }}</h1>
+        </header>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('overview')">Overview</button>
+            <button class="tab" onclick="showTab('memo')">Account Memo</button>
+            <button class="tab" onclick="showTab('prompt')">System Prompt</button>
+            <button class="tab" onclick="showTab('spec')">Agent Spec</button>
+            {% if account.changes %}
+            <button class="tab" onclick="showTab('diff')">v1 → v2 Diff</button>
+            {% endif %}
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="tab-overview" class="tab-content active">
+            <div class="panel">
+                <h2>Account Overview</h2>
+                {% set memo = account.versions.get('v2', account.versions.get('v1', {})).get('memo', {}) %}
+
+                <div class="field">
+                    <div class="label">Company Name</div>
+                    <div class="value">{{ memo.get('company_name', 'Unknown') }}</div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Current Version</div>
+                    <div class="value">{{ memo.get('version', 'Unknown') }}</div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Business Hours</div>
+                    {% set bh = memo.get('business_hours', {}) %}
+                    <div class="value">
+                        {{ ', '.join(bh.get('days', [])) }}<br>
+                        {{ bh.get('start', '?') }} — {{ bh.get('end', '?') }} ({{ bh.get('timezone', '?') }})
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Office Address</div>
+                    <div class="value {% if not memo.get('office_address') %}missing{% endif %}">
+                        {{ memo.get('office_address') or 'Not provided' }}
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Services</div>
+                    <div class="services-list">
+                        {% for service in memo.get('services_supported', []) %}
+                        <span>{{ service }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Emergency Definitions</div>
+                    <ul style="margin-left: 20px; color: #f87171;">
+                        {% for e in memo.get('emergency_definition', []) %}
+                        <li>{{ e }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                {% if memo.get('questions_or_unknowns') %}
+                <div class="field">
+                    <div class="label">⚠ Unknowns / Questions</div>
+                    <ul class="unknowns-list">
+                        {% for u in memo.get('questions_or_unknowns', []) %}
+                        <li>{{ u }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if memo.get('emergency_routing_rules') %}
+            <div class="panel">
+                <h2>Routing Configuration</h2>
+                {% set er = memo.get('emergency_routing_rules', {}) %}
+                <h3>Emergency Routing (After Hours)</h3>
+                <table>
+                    <tr><th>Priority</th><th>Name</th><th>Phone</th><th>Role</th><th>Timeout</th></tr>
+                    {% set pc = er.get('primary_contact', {}) %}
+                    {% if pc.get('phone') %}
+                    <tr><td>1</td><td>{{ pc.get('name', '—') }}</td><td>{{ pc.get('phone') }}</td><td>{{ pc.get('role', '—') }}</td><td>{{ pc.get('timeout_seconds', '—') }}s</td></tr>
+                    {% endif %}
+                    {% set sc = er.get('secondary_contact', {}) %}
+                    {% if sc.get('phone') %}
+                    <tr><td>2</td><td>{{ sc.get('name', '—') }}</td><td>{{ sc.get('phone') }}</td><td>{{ sc.get('role', '—') }}</td><td>{{ sc.get('timeout_seconds', '—') }}s</td></tr>
+                    {% endif %}
+                    {% for ac in er.get('additional_contacts', []) %}
+                    <tr><td>{{ loop.index + 2 }}</td><td>{{ ac.get('name', '—') }}</td><td>{{ ac.get('phone') }}</td><td>{{ ac.get('role', '—') }}</td><td>{{ ac.get('timeout_seconds', '—') }}s</td></tr>
+                    {% endfor %}
+                </table>
+                <p style="margin-top: 10px; color: #94a3b8; font-size: 13px;">
+                    Callback Promise: <strong>{{ er.get('callback_promise', 'ASAP') }}</strong>
+                </p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Memo Tab -->
+        <div id="tab-memo" class="tab-content">
+            <div class="panel">
+                <h2>Account Memo JSON (Latest Version)</h2>
+                {% set latest = account.versions.get('v2', account.versions.get('v1', {})) %}
+                <div class="json-block">{{ latest.get('memo', {}) | tojson(indent=2) }}</div>
+            </div>
+        </div>
+
+        <!-- Prompt Tab -->
+        <div id="tab-prompt" class="tab-content">
+            <div class="panel">
+                <h2>System Prompt (Latest Version)</h2>
+                {% set latest = account.versions.get('v2', account.versions.get('v1', {})) %}
+                <div class="prompt-block">{{ latest.get('prompt', 'No prompt generated') }}</div>
+            </div>
+        </div>
+
+        <!-- Spec Tab -->
+        <div id="tab-spec" class="tab-content">
+            <div class="panel">
+                <h2>Retell Agent Spec (Latest Version)</h2>
+                {% set latest = account.versions.get('v2', account.versions.get('v1', {})) %}
+                {% set spec = latest.get('spec', {}) %}
+                {% if spec %}
+                    {% set spec_display = spec.copy() %}
+                    {% if spec_display.pop('system_prompt', None) %}{% endif %}
+                    <p style="color: #94a3b8; font-size: 13px; margin-bottom: 12px;">(System prompt omitted for readability — see Prompt tab)</p>
+                    <div class="json-block">{{ spec_display | tojson(indent=2) }}</div>
+                {% else %}
+                    <p class="value missing">No agent spec generated</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Diff Tab -->
+        {% if account.changes %}
+        <div id="tab-diff" class="tab-content">
+            <div class="panel">
+                <h2>Changes: v1 → v2</h2>
+                <p style="color: #94a3b8; margin-bottom: 16px;">{{ account.changes.total_changes }} changes applied during onboarding</p>
+
+                {% for change in account.changes.changes %}
+                <div class="change-item">
+                    <span class="field-name">{{ change.field }}</span>
+                    <span class="action {{ change.action }}">{{ change.action }}</span>
+                    <div class="reason">{{ change.reason }}</div>
+
+                    <div class="diff-container" style="margin-top: 10px;">
+                        <div class="diff-panel v1">
+                            <h3>v1 (Demo)</h3>
+                            <div style="font-size: 12px; font-family: monospace; white-space: pre-wrap;">{{ change.old_value | tojson(indent=2) if change.old_value is mapping or change.old_value is iterable and change.old_value is not string else change.old_value }}</div>
+                        </div>
+                        <div class="diff-panel v2">
+                            <h3>v2 (Onboarding)</h3>
+                            <div style="font-size: 12px; font-family: monospace; white-space: pre-wrap;">{{ change.new_value | tojson(indent=2) if change.new_value is mapping or change.new_value is iterable and change.new_value is not string else change.new_value }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function showTab(name) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

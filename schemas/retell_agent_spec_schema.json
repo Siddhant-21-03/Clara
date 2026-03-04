@@ -1,0 +1,167 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Retell Agent Draft Spec",
+  "description": "Agent configuration spec for Retell AI voice agent deployment",
+  "type": "object",
+  "required": ["agent_name", "version", "system_prompt", "account_id"],
+  "properties": {
+    "agent_name": {
+      "type": "string",
+      "description": "Name of the agent (e.g., Clara - CompanyName)"
+    },
+    "account_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string",
+      "enum": ["v1", "v2"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "voice_style": {
+      "type": "string",
+      "enum": ["professional", "friendly", "calm", "urgent"],
+      "default": "professional",
+      "description": "Basic voice style for the agent"
+    },
+    "voice_config": {
+      "type": "object",
+      "properties": {
+        "voice_id": {
+          "type": "string",
+          "default": "eleven_turbo_v2",
+          "description": "Voice model ID"
+        },
+        "voice_style": {
+          "type": "string",
+          "enum": ["professional", "friendly", "calm", "urgent"],
+          "default": "professional"
+        },
+        "language": {
+          "type": "string",
+          "default": "en-US"
+        },
+        "speaking_rate": {
+          "type": "number",
+          "default": 1.0
+        }
+      }
+    },
+    "system_prompt": {
+      "type": "string",
+      "description": "The full generated system prompt for the agent"
+    },
+    "key_variables": {
+      "type": "object",
+      "properties": {
+        "timezone": { "type": ["string", "null"] },
+        "business_hours_display": { "type": ["string", "null"] },
+        "company_name": { "type": "string" },
+        "office_address": { "type": ["string", "null"] },
+        "emergency_triggers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "services": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "call_transfer_config": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "transfer_targets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "phone": { "type": "string" },
+              "priority": { "type": "integer" },
+              "conditions": { "type": "string" }
+            }
+          }
+        },
+        "timeout_seconds": { "type": "integer", "default": 30 },
+        "max_retries": { "type": "integer", "default": 2 }
+      }
+    },
+    "fallback_config": {
+      "type": "object",
+      "properties": {
+        "transfer_fail_message": {
+          "type": "string",
+          "description": "What to say if transfer fails"
+        },
+        "voicemail_enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "escalation_action": {
+          "type": "string",
+          "description": "Action taken on transfer failure"
+        }
+      }
+    },
+    "call_transfer_protocol": {
+      "type": "object",
+      "description": "Call transfer protocol configuration",
+      "properties": {
+        "enabled": { "type": "boolean", "default": true },
+        "transfer_targets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": ["string", "null"] },
+              "phone": { "type": "string" },
+              "priority": { "type": "integer" },
+              "conditions": { "type": "string" }
+            }
+          }
+        },
+        "timeout_seconds": { "type": "integer", "default": 30 },
+        "max_retries": { "type": "integer", "default": 2 },
+        "caller_message": { "type": "string" },
+        "fail_message": { "type": "string" }
+      }
+    },
+    "fallback_protocol": {
+      "type": "object",
+      "description": "Fallback protocol if all transfers fail",
+      "properties": {
+        "action": { "type": "string" },
+        "message": { "type": "string" },
+        "voicemail_enabled": { "type": "boolean", "default": false }
+      }
+    },
+    "tool_invocations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tool_name": { "type": "string" },
+          "trigger": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "description": "Backend tool calls (never mentioned to caller)"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "generated_by": { "type": "string", "default": "clara-pipeline" },
+        "source_transcript": { "type": "string" },
+        "confidence_score": { "type": "number" }
+      }
+    }
+  }
+}

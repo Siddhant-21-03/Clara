@@ -1,0 +1,162 @@
+{
+  "name": "Clara Answers - Onboarding Automation Pipeline",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "path": "={{$json.demo_transcripts_dir}}",
+        "options": {}
+      },
+      "id": "read-demo-files",
+      "name": "Read Demo Transcripts",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [300, 200],
+      "notes": "Read all .txt files from data/demo_transcripts/"
+    },
+    {
+      "parameters": {
+        "path": "={{$json.onboarding_transcripts_dir}}",
+        "options": {}
+      },
+      "id": "read-onboarding-files",
+      "name": "Read Onboarding Transcripts",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [300, 400],
+      "notes": "Read all .txt files from data/onboarding_transcripts/"
+    },
+    {
+      "parameters": {
+        "command": "cd {{$json.project_dir}}/scripts && python pipeline.py --mode demo"
+      },
+      "id": "run-demo-pipeline",
+      "name": "Pipeline A: Process Demos",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [550, 200],
+      "notes": "Run extraction + agent spec generation for all demo transcripts. Produces v1 artifacts."
+    },
+    {
+      "parameters": {
+        "command": "cd {{$json.project_dir}}/scripts && python pipeline.py --mode onboarding"
+      },
+      "id": "run-onboarding-pipeline",
+      "name": "Pipeline B: Process Onboarding",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [550, 400],
+      "notes": "Run onboarding updates, produce v2 artifacts with changelogs."
+    },
+    {
+      "parameters": {
+        "functionCode": "// Validate outputs exist for each account\nconst fs = require('fs');\nconst path = require('path');\nconst outputsDir = $input.first().json.outputs_dir;\nconst accounts = fs.readdirSync(outputsDir).filter(f => f.startsWith('ACC'));\nconst results = [];\n\nfor (const account of accounts) {\n  const v1Exists = fs.existsSync(path.join(outputsDir, account, 'v1', 'account_memo.json'));\n  const v2Exists = fs.existsSync(path.join(outputsDir, account, 'v2', 'account_memo.json'));\n  const changelogExists = fs.existsSync(path.join(outputsDir, account, 'changes.json'));\n  \n  results.push({\n    account_id: account,\n    v1_complete: v1Exists,\n    v2_complete: v2Exists,\n    changelog_exists: changelogExists,\n    status: v1Exists && v2Exists ? 'complete' : 'incomplete'\n  });\n}\n\nreturn results.map(r => ({ json: r }));"
+      },
+      "id": "validate-outputs",
+      "name": "Validate Outputs",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [800, 300],
+      "notes": "Check that all accounts have v1 and v2 artifacts"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.status}}",
+              "operation": "equals",
+              "value2": "complete"
+            }
+          ]
+        }
+      },
+      "id": "check-status",
+      "name": "Check Status",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Generate summary report\nconst items = $input.all();\nconst summary = {\n  total_accounts: items.length,\n  complete: items.filter(i => i.json.status === 'complete').length,\n  incomplete: items.filter(i => i.json.status === 'incomplete').length,\n  timestamp: new Date().toISOString()\n};\nreturn [{ json: summary }];"
+      },
+      "id": "generate-summary",
+      "name": "Generate Summary",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1200, 200],
+      "notes": "Create final pipeline summary"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Flag incomplete accounts for manual review\nconst item = $input.first();\nreturn [{\n  json: {\n    alert: `Account ${item.json.account_id} is incomplete`,\n    v1: item.json.v1_complete,\n    v2: item.json.v2_complete,\n    action: 'manual_review_required'\n  }\n}];"
+      },
+      "id": "flag-incomplete",
+      "name": "Flag Incomplete",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1200, 400],
+      "notes": "Alert for accounts missing v1 or v2"
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          { "node": "Read Demo Transcripts", "type": "main", "index": 0 },
+          { "node": "Read Onboarding Transcripts", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Read Demo Transcripts": {
+      "main": [
+        [{ "node": "Pipeline A: Process Demos", "type": "main", "index": 0 }]
+      ]
+    },
+    "Read Onboarding Transcripts": {
+      "main": [
+        [{ "node": "Pipeline B: Process Onboarding", "type": "main", "index": 0 }]
+      ]
+    },
+    "Pipeline A: Process Demos": {
+      "main": [
+        [{ "node": "Validate Outputs", "type": "main", "index": 0 }]
+      ]
+    },
+    "Pipeline B: Process Onboarding": {
+      "main": [
+        [{ "node": "Validate Outputs", "type": "main", "index": 0 }]
+      ]
+    },
+    "Validate Outputs": {
+      "main": [
+        [{ "node": "Check Status", "type": "main", "index": 0 }]
+      ]
+    },
+    "Check Status": {
+      "main": [
+        [{ "node": "Generate Summary", "type": "main", "index": 0 }],
+        [{ "node": "Flag Incomplete", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    { "name": "clara-pipeline" },
+    { "name": "automation" }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-03-04T00:00:00.000Z",
+  "versionId": "1"
+}

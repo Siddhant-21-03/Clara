@@ -1,0 +1,209 @@
+{
+  "account_id": "ACC-002",
+  "company_name": "Guardian Alarm & Sprinkler Co.",
+  "updated_at": "2026-03-04T15:52:41.677903+00:00Z",
+  "version_from": "v1",
+  "version_to": "v2",
+  "total_changes": 13,
+  "changes": [
+    {
+      "field": "business_hours",
+      "action": "updated",
+      "old_value": {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "start": "07:00",
+        "end": "18:00",
+        "timezone": "America/Chicago"
+      },
+      "new_value": {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "start": "07:00",
+        "end": "18:00",
+        "timezone": "America/Chicago",
+        "saturday_hours": {
+          "start": "07:00",
+          "end": "18:00"
+        },
+        "notes": [
+          "Sunday closed / after-hours only",
+          "Saturday closed / after-hours only"
+        ]
+      },
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "office_address",
+      "action": "updated",
+      "old_value": "Not set",
+      "new_value": "4521 West Industrial Boulevard, Chicago, Illinois, 60632",
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "emergency_definition",
+      "action": "updated",
+      "old_value": [
+        "Sprinkler leak",
+        "Active fire alarm",
+        "Those need immediate response, 24/7",
+        "When an emergency comes in after hours, who should Clara try to reach"
+      ],
+      "new_value": [
+        "Active fire alarm",
+        "Fire alarm sounding",
+        "Kitchen hood suppression system discharge",
+        "Trouble beep",
+        "Trouble signal",
+        "... and 1 more"
+      ],
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "emergency_routing_rules",
+      "action": "updated",
+      "old_value": {
+        "primary_contact": {
+          "name": null,
+          "phone": null,
+          "role": null,
+          "timeout_seconds": null
+        },
+        "secondary_contact": {
+          "name": null,
+          "phone": null,
+          "role": null,
+          "timeout_seconds": null
+        },
+        "fallback": "Take message (name, number, address, issue description) and assure callback",
+        "callback_promise": "as soon as possible",
+        "transfer_timeout_seconds": 30
+      },
+      "new_value": {
+        "primary_contact": {
+          "name": null,
+          "phone": "312-555-0200",
+          "role": "on-call",
+          "timeout_seconds": 30
+        },
+        "secondary_contact": {
+          "name": "Angela Torres",
+          "phone": "312-555-0215",
+          "role": "on-call",
+          "timeout_seconds": 60
+        },
+        "fallback": "Fallback chain: on-call (312-555-0200) -> Angela Torres (312-555-0215)",
+        "callback_promise": "15 minutes",
+        "transfer_timeout_seconds": 30
+      },
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "non_emergency_routing_rules",
+      "action": "updated",
+      "old_value": {
+        "during_hours": "Route to main office",
+        "after_hours": "Collect info and promise callback next business day"
+      },
+      "new_value": {
+        "during_hours": "Route to main office",
+        "after_hours": "Collect caller information; Get name and callback number; Promise callback next business day; Promis..."
+      },
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "integration_constraints",
+      "action": "updated",
+      "old_value": [
+        "We do NOT want any sprinkler jobs created automatically in ServiceTrade"
+      ],
+      "new_value": [
+        "Never — and I mean never — create sprinkler jobs in ServiceTrade",
+        "For fire alarm work, non-emergency requests can be auto-created in ServiceTrade"
+      ],
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "after_hours_flow_summary",
+      "action": "updated",
+      "old_value": "1. Greet caller\n2. Ask purpose of call\n3. Determine if emergency or non-emergency\n4. Emergency triggers: Sprinkler leak, Active fire alarm, Those need immediate response, 24/7...\n5. Emergency: collect...",
+      "new_value": "1. Greet caller\n2. Ask purpose of call\n3. Determine if emergency or non-emergency\n4. Emergency triggers: Active fire alarm, Fire alarm sounding, Kitchen hood suppression system discharge...\n5. Emergen...",
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "office_hours_flow_summary",
+      "action": "updated",
+      "old_value": "1. Greet caller\n2. Ask purpose of call\n3. Collect caller name and callback number\n4. Transfer to main office line\n5. If transfer fails: take message, confirm follow-up\n6. Ask 'Is there anything else I...",
+      "new_value": "1. Greet caller\n2. Ask purpose of call\n3. Collect caller name and callback number\n4. Transfer to: None (312-555-0100) -> None (312-555-0120)\n5. If transfer fails: take message, confirm follow-up\n6. As...",
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "special_rules",
+      "action": "updated",
+      "old_value": [],
+      "new_value": [
+        "If a caller mentions they're calling on behalf of a monitoring company — like ADT or SimpliSafe or whoever — that should always be treated as an emergency regardless of what they're describing"
+      ],
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "greeting",
+      "action": "updated",
+      "old_value": "Not set",
+      "new_value": "Thank you for calling Guardian Alarm and Sprinkler. How can I assist you?",
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "business_hours_routing",
+      "action": "updated",
+      "old_value": {},
+      "new_value": {
+        "contacts": [
+          {
+            "priority": 1,
+            "name": null,
+            "phone": "312-555-0100",
+            "role": null,
+            "timeout_seconds": 20
+          },
+          {
+            "priority": 2,
+            "name": null,
+            "phone": "312-555-0120",
+            "role": null,
+            "timeout_seconds": 20
+          }
+        ]
+      },
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "notes",
+      "action": "updated",
+      "old_value": "Auto-extracted from demo call transcript for Guardian Alarm & Sprinkler Co.. Services: 7 identified. Emergency triggers: 4 defined. Flagged 2 unknown(s) for human review.",
+      "new_value": "Auto-extracted from onboarding call transcript for Guardian Alarm & Sprinkler Co.. Emergency contact chain: 2 contact(s) configured. Services: 7 identified. Emergency triggers: 6 defined. Special hand...",
+      "reason": "Onboarding provided confirmed/more detailed data"
+    },
+    {
+      "field": "questions_or_unknowns",
+      "action": "resolved",
+      "old_value": [
+        "Office address not provided",
+        "Emergency routing phone numbers not provided"
+      ],
+      "new_value": [],
+      "reason": "Onboarding resolved previously unknown items"
+    }
+  ]
+}

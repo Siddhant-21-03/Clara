@@ -1,0 +1,2 @@
+# Clara Answers Pipeline - Dependencies
+flask>=2.3.0

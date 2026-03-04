@@ -1,0 +1,49 @@
+[Onboarding Call Transcript - Apex Electrical Services]
+Date: 2026-03-02
+Participants: Onboarding Specialist (Clara Team), David Rodriguez (General Manager, Apex Electrical Services), Jenny Tran (Dispatch Coordinator, Apex)
+
+Onboarding Specialist: David, Jenny — let's go through all the details. Business hours first.
+
+David Rodriguez: Monday through Friday, 7:00 AM to 4:30 PM. We're in Phoenix, Arizona — Mountain Standard Time, and we don't observe daylight saving time. So it's MST year-round.
+
+Onboarding Specialist: Any weekend hours?
+
+Jenny Tran: No weekends. Closed Saturday and Sunday. But emergencies still need to be answered.
+
+Onboarding Specialist: Let's define emergencies.
+
+David Rodriguez: OK. Complete power outage in a commercial building. Sparking or arcing from electrical panels or wiring. Any situation involving exposed live wires. Generator failure for critical facilities — hospitals, data centers, cold storage. Electrical fire or burning smell. And — this is new since the demo — we also want to treat any electrical issue at a medical facility as emergency, even if it's not life-threatening.
+
+Jenny Tran: Yeah, our medical clients are our biggest accounts. We can't afford slow response there.
+
+Onboarding Specialist: Good call. Emergency routing after hours?
+
+David Rodriguez: We set up a proper rotation since the demo. Primary on-call: 480-555-0300, that's a rotating cell phone we pass between techs each week. Give it 60 seconds to answer. Secondary: me, David Rodriguez, at 480-555-0155. Give me 45 seconds. If both fail, take the message — name, number, address, description of the issue — and tell them we'll call back within 20 minutes.
+
+Onboarding Specialist: During business hours?
+
+Jenny Tran: Calls come to me at the dispatch desk. 480-555-0100. I'm the primary. If I don't answer within 25 seconds, roll to our office line 480-555-0101 where someone else can grab it. Last resort, David's cell.
+
+Onboarding Specialist: Non-emergency after hours?
+
+David Rodriguez: Same as most — collect info, promise a callback by 9 AM next business day. No transfers needed for non-emergencies after hours.
+
+Onboarding Specialist: ServiceTrade usage?
+
+Jenny Tran: We use ServiceTrade but we're still setting up our integration. For now, don't create any jobs in ServiceTrade automatically. We'll enable that later once our integration is solid.
+
+David Rodriguez: Yeah, for now Clara should just store the information and we'll create jobs manually.
+
+Onboarding Specialist: Understood. Any other rules?
+
+David Rodriguez: Yes — if a caller mentions a permit inspection or a city inspector, route that to Jenny directly, even after hours. Jenny, you OK with that?
+
+Jenny Tran: Yeah, my cell is 480-555-0188. Those are time-sensitive.
+
+David Rodriguez: Oh and the greeting: "Thank you for calling Apex Electrical Services, this is Clara. How can I help you?"
+
+Onboarding Specialist: Office address?
+
+David Rodriguez: 7890 East McDowell Road, Suite 102, Phoenix, Arizona, 85008.
+
+Onboarding Specialist: Perfect. I'll send the confirmation over.

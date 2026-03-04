@@ -1,0 +1,37 @@
+[Demo Call Transcript - Apex Electrical Services]
+Date: 2026-02-20
+Participants: Sales Rep (Clara Team), David Rodriguez (General Manager, Apex Electrical Services)
+
+Sales Rep: David, good to connect. Tell me about Apex and what you're dealing with on the phone side.
+
+David Rodriguez: Yeah, so Apex is a commercial electrical contractor. We're based in Phoenix, Arizona. We do electrical installations, panel upgrades, lighting retrofits, generator maintenance, and emergency electrical work. We cover the whole Phoenix metro area.
+
+Sales Rep: Nice. What's the call situation like?
+
+David Rodriguez: It's chaos, honestly. We've got two receptionists during the day and they can barely keep up. After hours, calls go to an answering service that's... not great. They take a message and email it to us. Half the messages are wrong — wrong phone numbers, wrong descriptions of the problem. And the turnaround is terrible.
+
+Sales Rep: How do you define an electrical emergency?
+
+David Rodriguez: Power outage in a commercial building, any situation where there's sparking or exposed wiring, generator failure — especially for places like hospitals or data centers that have critical backup power. Oh, and if there's an electrical fire or smell of burning.
+
+Sales Rep: Those definitely need fast response. What about non-emergencies?
+
+David Rodriguez: Lighting replacements, quote requests, scheduling maintenance, permit questions — that kind of stuff. Important but not urgent.
+
+Sales Rep: What are your hours?
+
+David Rodriguez: We're 7 AM to 4:30 PM Monday through Friday. Arizona doesn't do daylight saving by the way, so our timezone is Mountain Standard year-round.
+
+Sales Rep: Good to know. For emergencies after hours, who would Clara connect the caller to?
+
+David Rodriguez: That's a good question. Right now it's a mess. I think we need to set up a proper on-call rotation. Can we figure that out during onboarding?
+
+Sales Rep: Absolutely. That's what onboarding is for. Let me show you Clara in action...
+
+[Demo interaction follows]
+
+David Rodriguez: That's impressive. The thing I like is it actually sounds natural. Not like a robot reading a script.
+
+Sales Rep: That's the goal. Should we move forward?
+
+David Rodriguez: Yeah, let's do it. We need this yesterday.

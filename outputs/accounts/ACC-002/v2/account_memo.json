@@ -1,0 +1,104 @@
+{
+  "company_name": "Guardian Alarm & Sprinkler Co.",
+  "version": "v2",
+  "source": "onboarding_call",
+  "created_at": "2026-03-04T15:52:41.358944+00:00Z",
+  "updated_at": "2026-03-04T15:52:41.667939+00:00Z",
+  "business_hours": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "start": "07:00",
+    "end": "18:00",
+    "timezone": "America/Chicago",
+    "saturday_hours": {
+      "start": "07:00",
+      "end": "18:00"
+    },
+    "notes": [
+      "Sunday closed / after-hours only",
+      "Saturday closed / after-hours only"
+    ]
+  },
+  "office_address": "4521 West Industrial Boulevard, Chicago, Illinois, 60632",
+  "services_supported": [
+    "Fire Protection",
+    "Alarm",
+    "Sprinkler",
+    "Kitchen Hood",
+    "Fire Sprinkler Systems",
+    "Fire Alarm Systems",
+    "Kitchen Hood Suppression"
+  ],
+  "emergency_definition": [
+    "Active fire alarm",
+    "Fire alarm sounding",
+    "Kitchen hood suppression system discharge",
+    "Trouble beep",
+    "Trouble signal",
+    "After-hours emergency routing"
+  ],
+  "emergency_routing_rules": {
+    "primary_contact": {
+      "name": null,
+      "phone": "312-555-0200",
+      "role": "on-call",
+      "timeout_seconds": 30
+    },
+    "secondary_contact": {
+      "name": "Angela Torres",
+      "phone": "312-555-0215",
+      "role": "on-call",
+      "timeout_seconds": 60
+    },
+    "additional_contacts": [],
+    "fallback": "Fallback chain: on-call (312-555-0200) -> Angela Torres (312-555-0215)",
+    "callback_promise": "15 minutes",
+    "transfer_timeout_seconds": 30
+  },
+  "non_emergency_routing_rules": {
+    "during_hours": "Route to main office",
+    "after_hours": "Collect caller information; Get name and callback number; Promise callback next business day; Promise callback by 10 AM"
+  },
+  "call_transfer_rules": {
+    "timeout_seconds": 30,
+    "max_retries": 2,
+    "failure_message": "I apologize, I wasn't able to connect you. Let me take your information and someone will call you back shortly."
+  },
+  "business_hours_routing": {
+    "contacts": [
+      {
+        "priority": 1,
+        "name": null,
+        "phone": "312-555-0100",
+        "role": null,
+        "timeout_seconds": 20
+      },
+      {
+        "priority": 2,
+        "name": null,
+        "phone": "312-555-0120",
+        "role": null,
+        "timeout_seconds": 20
+      }
+    ]
+  },
+  "integration_constraints": [
+    "Never — and I mean never — create sprinkler jobs in ServiceTrade",
+    "For fire alarm work, non-emergency requests can be auto-created in ServiceTrade"
+  ],
+  "special_rules": [
+    "If a caller mentions they're calling on behalf of a monitoring company — like ADT or SimpliSafe or whoever — that should always be treated as an emergency regardless of what they're describing"
+  ],
+  "greeting": "Thank you for calling Guardian Alarm and Sprinkler. How can I assist you?",
+  "after_hours_flow_summary": "1. Greet caller\n2. Ask purpose of call\n3. Determine if emergency or non-emergency\n4. Emergency triggers: Active fire alarm, Fire alarm sounding, Kitchen hood suppression system discharge...\n5. Emergency: collect name, number, address -> transfer chain: on-call (312-555-0200) -> Angela Torres (312-555-0215)\n6. If transfer fails: take message, assure callback\n7. Non-emergency: collect info, promise callback next business day\n8. Ask 'Is there anything else I can help with?'\n9. Close call",
+  "office_hours_flow_summary": "1. Greet caller\n2. Ask purpose of call\n3. Collect caller name and callback number\n4. Transfer to: None (312-555-0100) -> None (312-555-0120)\n5. If transfer fails: take message, confirm follow-up\n6. Ask 'Is there anything else I can help with?'\n7. Close call",
+  "questions_or_unknowns": [],
+  "notes": "Auto-extracted from onboarding call transcript for Guardian Alarm & Sprinkler Co.. Emergency contact chain: 2 contact(s) configured. Services: 7 identified. Emergency triggers: 6 defined. Special handling rules: 1 captured.",
+  "_source_file": "demo_002_guardian.txt",
+  "account_id": "ACC-002"
+}

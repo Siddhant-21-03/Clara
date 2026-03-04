@@ -1,0 +1,51 @@
+[Onboarding Call Transcript - Guardian Alarm & Sprinkler Co.]
+Date: 2026-03-01
+Participants: Onboarding Specialist (Clara Team), Lisa Chen (Operations Manager, Guardian Alarm & Sprinkler Co.)
+
+Onboarding Specialist: Lisa, let's finalize everything for Guardian. Starting with business hours.
+
+Lisa Chen: OK so officially we're Monday through Friday, 7:00 AM to 6:00 PM Central time. Chicago. Saturdays, we sometimes have crews out but the office is closed. So after hours would be anything outside 7 to 6 weekdays.
+
+Onboarding Specialist: So Saturday and Sunday are fully after-hours?
+
+Lisa Chen: Yes, exactly. Saturday and Sunday should be treated as after-hours.
+
+Onboarding Specialist: Let's go through emergency definitions.
+
+Lisa Chen: OK. Emergency is: active fire alarm sounding in a building, sprinkler system discharge or leak, fire alarm panel offline or in trouble, and kitchen hood suppression system discharge. Those are our four emergency categories.
+
+Onboarding Specialist: What about a customer saying their alarm is beeping? Like a trouble beep?
+
+Lisa Chen: If it's a constant trouble beep on a fire alarm panel, that's still an emergency because it means the system might not function properly. So yes, treat trouble signals as emergency.
+
+Onboarding Specialist: After-hours emergency routing?
+
+Lisa Chen: We finalized our on-call rotation. The primary on-call is always reachable at 312-555-0200. That's a forwarding number that goes to whoever is on call that week. If no answer in 60 seconds, try our dispatch manager, Angela Torres, at 312-555-0215. If Angela doesn't answer in 45 seconds, take a message and tell the caller we'll have someone call back within 15 minutes. And I mean that — 15 minutes. Make sure Clara says that specifically.
+
+Onboarding Specialist: Got it — 15 minute callback promise for emergencies. During business hours routing?
+
+Lisa Chen: During hours, all calls go to main office at 312-555-0100. If no answer in 20 seconds, try my direct line at 312-555-0120.
+
+Onboarding Specialist: Non-emergency after hours?
+
+Lisa Chen: Collect name, number, and brief description. Let them know we'll reach out next business day by 10 AM. Be specific — say "by 10 AM" not just "during business hours."
+
+Onboarding Specialist: ServiceTrade rules?
+
+Lisa Chen: This is critical. Never — and I mean never — create sprinkler jobs in ServiceTrade. Our sprinkler work requires detailed scoping and our sprinkler team handles intake manually. For fire alarm work, non-emergency requests can be auto-created in ServiceTrade. For kitchen hood work, also can be auto-created.
+
+Onboarding Specialist: Got it. Any other constraints?
+
+Lisa Chen: Yes. If a caller mentions they're calling on behalf of a monitoring company — like ADT or SimpliSafe or whoever — that should always be treated as an emergency regardless of what they're describing. Monitoring companies only call us when something is actually happening.
+
+Onboarding Specialist: Smart rule. Anything about the greeting?
+
+Lisa Chen: "Thank you for calling Guardian Alarm and Sprinkler. How can I assist you?" Keep it simple.
+
+Onboarding Specialist: Office address for reference?
+
+Lisa Chen: 4521 West Industrial Boulevard, Chicago, Illinois, 60632.
+
+Onboarding Specialist: Perfect. I'll configure everything and send you a confirmation.
+
+Lisa Chen: Sounds great. Thanks!

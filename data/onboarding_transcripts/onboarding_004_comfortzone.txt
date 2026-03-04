@@ -1,0 +1,53 @@
+[Onboarding Call Transcript - ComfortZone HVAC Solutions]
+Date: 2026-03-03
+Participants: Onboarding Specialist (Clara Team), Rachel Park (Office Manager, ComfortZone HVAC Solutions), James Wright (Lead Technician, ComfortZone)
+
+Onboarding Specialist: Rachel, James — let's get everything configured. Business hours?
+
+Rachel Park: Monday through Friday, 8:00 AM to 5:30 PM Eastern. Wait, no — we're in Atlanta so that's Eastern time. And Saturdays we're open 8:00 AM to 12:00 PM noon.
+
+Onboarding Specialist: So Saturday is a half day. Is Saturday considered business hours or after-hours?
+
+Rachel Park: Business hours. Saturday 8 to noon, Clara should route calls the same as weekday business hours. After noon on Saturday, it switches to after-hours. Sunday is fully after-hours.
+
+Onboarding Specialist: Got it. Emergencies?
+
+James Wright: No heat in a commercial building when it's below 40 degrees outside. No AC when it's above 90 degrees and affecting a critical space — server room, medical facility, restaurant kitchen. Complete refrigeration failure in a restaurant or food service location. Any gas leak or CO detector alarm. And honestly, any HVAC issue in a hospital or medical building, regardless of temperature.
+
+Rachel Park: James is right. Medical facilities are always emergency.
+
+Onboarding Specialist: Emergency routing after hours?
+
+James Wright: I'm the primary on-call. My cell is 404-555-0177. Give me 45 seconds. If I don't answer, try Rachel at 404-555-0133. If neither of us answers, take their info and tell them we'll call within 30 minutes.
+
+Rachel Park: Actually, I want to change that. If James doesn't answer, try our secondary tech, Marcus Boyd, at 404-555-0192 before trying me. I don't want to be second in line — I can't dispatch or troubleshoot. Make it James, then Marcus, then me as absolute last resort.
+
+James Wright: That makes more sense.
+
+Onboarding Specialist: So the order is James, Marcus, then Rachel. Timeout for each?
+
+Rachel Park: 45 seconds for James, 45 seconds for Marcus, 30 seconds for me.
+
+Onboarding Specialist: During business hours routing?
+
+Rachel Park: Main office line 404-555-0100, that's me. 20 seconds to answer. If I miss it, roll to James at 404-555-0177.
+
+Onboarding Specialist: Non-emergency after hours?
+
+Rachel Park: Collect their info. If it's a maintenance contract customer and they mention their account or contract number, make sure Clara captures that. Tell them we'll follow up by 9 AM next business day.
+
+Onboarding Specialist: ServiceTrade?
+
+Rachel Park: We use it. Non-emergency service requests can be auto-created. But NOT for warranty work — warranty claims need to go through me manually. And not for new installations, those need a site visit first.
+
+James Wright: Also, for emergency calls, don't create ServiceTrade jobs. We handle those through our emergency dispatch process.
+
+Onboarding Specialist: Makes sense. Any other rules?
+
+Rachel Park: Yes — if a caller mentions they were referred by a property management company, ask which property management company and which property. That helps us route faster.
+
+James Wright: Oh, and the greeting should mention that we service heating, cooling, and refrigeration. "Thank you for calling ComfortZone HVAC Solutions, your heating, cooling, and refrigeration experts. This is Clara, how can I help you?"
+
+Rachel Park: Office address is 2200 Peachtree Industrial Boulevard, Suite 310, Atlanta, Georgia, 30341.
+
+Onboarding Specialist: Great, I've got everything. I'll send the confirmation.

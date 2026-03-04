@@ -1,0 +1,76 @@
+{
+  "company_name": "ComfortZone HVAC Solutions",
+  "version": "v1",
+  "source": "demo_call",
+  "created_at": "2026-03-04T15:52:41.437478+00:00Z",
+  "updated_at": "2026-03-04T15:52:41.437494+00:00Z",
+  "business_hours": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "start": "08:00",
+    "end": "17:30",
+    "timezone": "America/New_York",
+    "saturday_hours": null,
+    "notes": []
+  },
+  "office_address": null,
+  "services_supported": [
+    "Hvac"
+  ],
+  "emergency_definition": [
+    "No heat in winter for a commercial",
+    "No ac in summer when it's affecting a critical",
+    "Gas leak",
+    "Co detector alarm",
+    "Refrigeration failure",
+    "Who handles emergency calls after hours currently",
+    "Emergency calls get escalated, non-emergencies get documented for morning follow-up"
+  ],
+  "emergency_routing_rules": {
+    "primary_contact": {
+      "name": null,
+      "phone": null,
+      "role": null,
+      "timeout_seconds": null
+    },
+    "secondary_contact": {
+      "name": null,
+      "phone": null,
+      "role": null,
+      "timeout_seconds": null
+    },
+    "additional_contacts": [],
+    "fallback": "Take message (name, number, address, issue description) and assure callback",
+    "callback_promise": "as soon as possible",
+    "transfer_timeout_seconds": 30
+  },
+  "non_emergency_routing_rules": {
+    "during_hours": "Route to main office",
+    "after_hours": "Collect info and promise callback next business day"
+  },
+  "call_transfer_rules": {
+    "timeout_seconds": 30,
+    "max_retries": 2,
+    "failure_message": "I apologize, I wasn't able to connect you. Let me take your information and someone will call you back shortly."
+  },
+  "business_hours_routing": {
+    "contacts": []
+  },
+  "integration_constraints": [],
+  "special_rules": [],
+  "greeting": null,
+  "after_hours_flow_summary": "1. Greet caller\n2. Ask purpose of call\n3. Determine if emergency or non-emergency\n4. Emergency triggers: No heat in winter for a commercial, No ac in summer when it's affecting a critical, Gas leak...\n5. Emergency: collect name, number, address -> attempt transfer\n6. If transfer fails: take message, assure callback\n7. Non-emergency: collect info, promise callback next business day\n8. Ask 'Is there anything else I can help with?'\n9. Close call",
+  "office_hours_flow_summary": "1. Greet caller\n2. Ask purpose of call\n3. Collect caller name and callback number\n4. Transfer to main office line\n5. If transfer fails: take message, confirm follow-up\n6. Ask 'Is there anything else I can help with?'\n7. Close call",
+  "questions_or_unknowns": [
+    "Office address not provided",
+    "Emergency routing phone numbers not provided"
+  ],
+  "notes": "Auto-extracted from demo call transcript for ComfortZone HVAC Solutions. Services: 1 identified. Emergency triggers: 7 defined. Flagged 2 unknown(s) for human review.",
+  "_source_file": "demo_004_comfortzone.txt",
+  "account_id": "ACC-004"
+}

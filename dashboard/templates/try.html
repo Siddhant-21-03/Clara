@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Your Own Transcript — Clara Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .breadcrumb { margin-bottom: 20px; }
+        .breadcrumb a { color: #60a5fa; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { color: #64748b; }
+        header { background: linear-gradient(135deg, #1e293b, #334155); padding: 30px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #475569; }
+        header h1 { font-size: 24px; color: #60a5fa; margin-bottom: 5px; }
+        header p { color: #94a3b8; font-size: 14px; }
+        .panel { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; margin-bottom: 20px; }
+        .panel h2 { font-size: 18px; color: #f1f5f9; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #334155; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 13px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        textarea { width: 100%; min-height: 300px; background: #0f172a; color: #e2e8f0; border: 1px solid #334155; border-radius: 8px; padding: 16px; font-family: 'Fira Code', monospace; font-size: 13px; resize: vertical; line-height: 1.6; }
+        textarea:focus { outline: none; border-color: #60a5fa; }
+        textarea::placeholder { color: #475569; }
+        .radio-group { display: flex; gap: 16px; }
+        .radio-group label { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 10px 20px; border-radius: 8px; border: 1px solid #334155; transition: all 0.2s; text-transform: none; letter-spacing: 0; font-size: 14px; }
+        .radio-group label:hover { border-color: #60a5fa; }
+        .radio-group input[type="radio"] { accent-color: #60a5fa; }
+        .radio-group input[type="radio"]:checked + span { color: #60a5fa; font-weight: 600; }
+        .btn { padding: 12px 32px; border-radius: 8px; border: none; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn-primary { background: #60a5fa; color: #0f172a; }
+        .btn-primary:hover { background: #93c5fd; transform: translateY(-1px); }
+        .btn-primary:disabled { background: #334155; color: #64748b; cursor: not-allowed; transform: none; }
+        .btn-secondary { background: #334155; color: #94a3b8; margin-left: 12px; }
+        .btn-secondary:hover { background: #475569; }
+        .status-bar { display: none; margin-top: 20px; padding: 16px; border-radius: 8px; font-size: 14px; }
+        .status-bar.processing { display: block; background: #1e3a5f; color: #60a5fa; border: 1px solid #2563eb; }
+        .status-bar.success { display: block; background: #14532d; color: #34d399; border: 1px solid #16a34a; }
+        .status-bar.error { display: block; background: #450a0a; color: #f87171; border: 1px solid #dc2626; }
+        .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #60a5fa; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Results */
+        .results { display: none; margin-top: 30px; }
+        .results.visible { display: block; }
+        .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .result-header h2 { font-size: 20px; color: #34d399; border: none; padding: 0; margin: 0; }
+        .result-header a { color: #60a5fa; text-decoration: none; font-size: 14px; }
+        .result-header a:hover { text-decoration: underline; }
+        .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 20px; }
+        .result-stat { background: #0f172a; border-radius: 8px; padding: 16px; border: 1px solid #334155; }
+        .result-stat .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+        .result-stat .value { font-size: 22px; font-weight: 700; color: #60a5fa; margin-top: 4px; }
+        .result-stat .value.green { color: #34d399; }
+        .result-stat .value.yellow { color: #fbbf24; }
+        .result-stat .value.red { color: #f87171; }
+        .tabs { display: flex; gap: 4px; margin-bottom: 16px; background: #0f172a; border-radius: 10px; padding: 4px; border: 1px solid #334155; }
+        .tab { padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; color: #94a3b8; transition: all 0.2s; border: none; background: none; }
+        .tab:hover { color: #e2e8f0; background: #334155; }
+        .tab.active { background: #60a5fa; color: #0f172a; font-weight: 600; }
+        .result-tab { display: none; }
+        .result-tab.active { display: block; }
+        .json-block { background: #0f172a; border-radius: 8px; padding: 16px; font-family: 'Fira Code', monospace; font-size: 13px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; max-height: 500px; overflow-y: auto; border: 1px solid #334155; }
+        .prompt-block { background: #0f172a; border-radius: 8px; padding: 20px; font-size: 14px; line-height: 1.8; overflow-y: auto; max-height: 500px; border: 1px solid #334155; white-space: pre-wrap; }
+
+        /* Sample selector */
+        .samples { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .sample-btn { padding: 6px 14px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #94a3b8; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+        .sample-btn:hover { border-color: #60a5fa; color: #60a5fa; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">← Dashboard</a> <span>/ Try Your Own Transcript</span>
+        </div>
+
+        <header>
+            <h1>🧪 Try Your Own Transcript</h1>
+            <p>Paste a demo or onboarding call transcript below and watch the Clara pipeline process it in real-time.</p>
+        </header>
+
+        <div class="panel">
+            <h2>Input Transcript</h2>
+
+            <div class="form-group">
+                <label>Transcript Type</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="type" value="demo" checked>
+                        <span>📞 Demo Call</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="type" value="onboarding">
+                        <span>📋 Onboarding Call</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Paste Transcript Text</label>
+                <textarea id="transcript" placeholder="Paste your transcript here...
+
+Example format:
+Speaker 1: Hi, thanks for your interest in Clara. What's your company name?
+Speaker 2: We're Sunrise Plumbing, based out of Phoenix.
+Speaker 1: Great, and what services do you offer?
+Speaker 2: Residential and commercial plumbing. Emergency drain clearing, water heater installs, re-piping..."></textarea>
+                <div class="samples">
+                    <span style="color: #64748b; font-size: 12px; line-height: 28px;">Load sample:</span>
+                    {% for sample in samples %}
+                    <button class="sample-btn" data-file="{{ sample.file }}" data-type="{{ sample.type }}">{{ sample.label }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-primary" id="processBtn" onclick="processTranscript()">🚀 Process Transcript</button>
+                <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+            </div>
+
+            <div class="status-bar" id="status"></div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results" id="results">
+            <div class="panel">
+                <div class="result-header">
+                    <h2>✅ Pipeline Results</h2>
+                    <a href="#" id="viewAccountLink">View Full Account →</a>
+                </div>
+
+                <div class="result-grid" id="resultStats"></div>
+
+                <div class="tabs" id="resultTabs"></div>
+
+                <div id="resultTabContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function processTranscript() {
+            const transcript = document.getElementById('transcript').value.trim();
+            const type = document.querySelector('input[name="type"]:checked').value;
+            const status = document.getElementById('status');
+            const btn = document.getElementById('processBtn');
+            const results = document.getElementById('results');
+
+            if (!transcript) {
+                status.className = 'status-bar error';
+                status.textContent = '⚠ Please paste a transcript first.';
+                return;
+            }
+
+            if (transcript.length < 100) {
+                status.className = 'status-bar error';
+                status.textContent = '⚠ Transcript seems too short. Paste the full call transcript (at least a few exchanges).';
+                return;
+            }
+
+            // Processing state
+            btn.disabled = true;
+            btn.textContent = '⏳ Processing...';
+            status.className = 'status-bar processing';
+            status.innerHTML = '<span class="spinner"></span> Running Clara pipeline — extracting data, generating agent spec...';
+            results.classList.remove('visible');
+
+            try {
+                const resp = await fetch('/api/process', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ transcript, type })
+                });
+
+                const data = await resp.json();
+
+                if (!resp.ok) {
+                    throw new Error(data.error || 'Pipeline processing failed');
+                }
+
+                // Success
+                status.className = 'status-bar success';
+                status.textContent = `✅ Pipeline complete — ${data.account_id} processed in ${data.duration || '< 1'}s`;
+
+                showResults(data);
+
+            } catch (err) {
+                status.className = 'status-bar error';
+                status.textContent = '❌ Error: ' + err.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🚀 Process Transcript';
+            }
+        }
+
+        function showResults(data) {
+            const results = document.getElementById('results');
+            results.classList.add('visible');
+
+            // Link to full account page
+            document.getElementById('viewAccountLink').href = '/account/' + data.account_id;
+
+            // Stats
+            const conf = data.confidence || 0;
+            const confClass = conf >= 0.7 ? 'green' : conf >= 0.4 ? 'yellow' : 'red';
+            const unknowns = data.unknowns || [];
+
+            document.getElementById('resultStats').innerHTML = `
+                <div class="result-stat">
+                    <div class="label">Account ID</div>
+                    <div class="value" style="font-size: 16px; font-family: monospace;">${data.account_id}</div>
+                </div>
+                <div class="result-stat">
+                    <div class="label">Company</div>
+                    <div class="value" style="font-size: 16px;">${data.company_name || 'Unknown'}</div>
+                </div>
+                <div class="result-stat">
+                    <div class="label">Version</div>
+                    <div class="value green">${data.version}</div>
+                </div>
+                <div class="result-stat">
+                    <div class="label">Confidence</div>
+                    <div class="value ${confClass}">${Math.round(conf * 100)}%</div>
+                </div>
+                <div class="result-stat">
+                    <div class="label">Unknowns</div>
+                    <div class="value ${unknowns.length > 0 ? 'yellow' : 'green'}">${unknowns.length}</div>
+                </div>
+                ${data.changes_count !== undefined ? `
+                <div class="result-stat">
+                    <div class="label">Changes (v1→v2)</div>
+                    <div class="value green">${data.changes_count}</div>
+                </div>` : ''}
+            `;
+
+            // Tabs
+            const tabs = [
+                { id: 'memo', label: 'Account Memo' },
+                { id: 'prompt', label: 'System Prompt' },
+                { id: 'spec', label: 'Agent Spec' },
+            ];
+            if (unknowns.length > 0) {
+                tabs.push({ id: 'unknowns', label: `⚠ Unknowns (${unknowns.length})` });
+            }
+            if (data.changes) {
+                tabs.push({ id: 'changes', label: `Changes (${data.changes_count})` });
+            }
+
+            document.getElementById('resultTabs').innerHTML = tabs.map((t, i) =>
+                `<button class="tab ${i === 0 ? 'active' : ''}" onclick="showResultTab('${t.id}', this)">${t.label}</button>`
+            ).join('');
+
+            // Tab content
+            let content = '';
+
+            content += `<div class="result-tab active" id="rtab-memo">
+                <div class="json-block">${escapeHtml(JSON.stringify(data.memo, null, 2))}</div>
+            </div>`;
+
+            content += `<div class="result-tab" id="rtab-prompt">
+                <div class="prompt-block">${escapeHtml(data.system_prompt || 'No prompt generated')}</div>
+            </div>`;
+
+            // Show spec without the system_prompt field for readability
+            let specDisplay = data.agent_spec ? { ...data.agent_spec } : {};
+            delete specDisplay.system_prompt;
+            content += `<div class="result-tab" id="rtab-spec">
+                <div class="json-block">${escapeHtml(JSON.stringify(specDisplay, null, 2))}</div>
+            </div>`;
+
+            if (unknowns.length > 0) {
+                content += `<div class="result-tab" id="rtab-unknowns">
+                    <ul style="list-style: none; padding: 0;">
+                        ${unknowns.map(u => `<li style="padding: 8px 0; color: #fbbf24; font-size: 14px;">⚠ ${escapeHtml(u)}</li>`).join('')}
+                    </ul>
+                </div>`;
+            }
+
+            if (data.changes) {
+                content += `<div class="result-tab" id="rtab-changes">
+                    <div class="json-block">${escapeHtml(JSON.stringify(data.changes, null, 2))}</div>
+                </div>`;
+            }
+
+            document.getElementById('resultTabContent').innerHTML = content;
+        }
+
+        function showResultTab(name, btn) {
+            document.querySelectorAll('.result-tab').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('#resultTabs .tab').forEach(el => el.classList.remove('active'));
+            document.getElementById('rtab-' + name).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function clearAll() {
+            document.getElementById('transcript').value = '';
+            document.getElementById('status').className = 'status-bar';
+            document.getElementById('results').classList.remove('visible');
+        }
+
+        // Load sample transcripts
+        document.querySelectorAll('.sample-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const file = btn.dataset.file;
+                const type = btn.dataset.type;
+
+                // Set radio button
+                document.querySelector(`input[name="type"][value="${type}"]`).checked = true;
+
+                try {
+                    const resp = await fetch(`/api/sample/${file}`);
+                    if (resp.ok) {
+                        const data = await resp.json();
+                        document.getElementById('transcript').value = data.content;
+                    }
+                } catch (err) {
+                    console.error('Failed to load sample:', err);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

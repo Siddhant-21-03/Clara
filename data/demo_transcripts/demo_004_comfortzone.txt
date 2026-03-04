@@ -1,0 +1,37 @@
+[Demo Call Transcript - ComfortZone HVAC Solutions]
+Date: 2026-02-22
+Participants: Sales Rep (Clara Team), Rachel Park (Office Manager, ComfortZone HVAC Solutions)
+
+Sales Rep: Rachel, great to meet you. Tell me about ComfortZone.
+
+Rachel Park: Hi! So ComfortZone is an HVAC company. We do heating, ventilation, air conditioning — both residential and commercial but mostly commercial. We're in Atlanta, Georgia. Been around for about 15 years.
+
+Sales Rep: What's driving your interest in Clara?
+
+Rachel Park: Well, we're growing fast and our call volume has gone up like 40% this year. We've got one receptionist — me — and I can't handle it all. Especially after hours. We get calls at midnight when someone's AC goes out in the middle of summer or their heat dies in January. Those are real emergencies for commercial buildings — think server rooms, restaurants, medical facilities.
+
+Sales Rep: So what would you call an emergency?
+
+Rachel Park: No heat in winter for a commercial building, no AC in summer when it's affecting a critical space, refrigeration failures for restaurants, and any gas leak or CO detector alarm. Those are drop-everything situations.
+
+Sales Rep: And your business hours?
+
+Rachel Park: 8 AM to 5:30 PM Monday through Friday. We have a half day on Saturdays — 8 to noon — for our maintenance contracts.
+
+Sales Rep: That's helpful. Who handles emergency calls after hours currently?
+
+Rachel Park: Our lead tech, James, is supposed to be on call. But honestly sometimes he doesn't pick up and calls go to voicemail. We've lost customers because of that.
+
+Sales Rep: Clara would make sure every call gets answered and handled properly. Emergency calls get escalated, non-emergencies get documented for morning follow-up.
+
+Rachel Park: That's exactly what we need. We also want to make sure that if someone calls about their maintenance contract, Clara can let them know their next scheduled visit if possible.
+
+Sales Rep: We can look into that integration. Do you use any service management software?
+
+Rachel Park: We use ServiceTrade, yeah.
+
+Sales Rep: Perfect. We'll configure that during onboarding. Anything else?
+
+Rachel Park: No, I think that covers it. Let's go ahead.
+
+Sales Rep: Great. We'll set up onboarding soon.

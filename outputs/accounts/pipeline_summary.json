@@ -1,0 +1,133 @@
+{
+  "pipeline_run": {
+    "started_at": "2026-03-04T15:52:41.300850+00:00Z",
+    "completed_at": "2026-03-04T15:52:42.066007+00:00Z",
+    "duration_seconds": 0.77
+  },
+  "demo_results": {
+    "total": 5,
+    "success": 5,
+    "errors": 0,
+    "accounts": [
+      {
+        "account_id": "ACC-001",
+        "company_name": "FireShield Protection Services",
+        "version": "v1",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-001\\v1",
+        "confidence": 0.5,
+        "unknowns": [
+          "Office address not provided",
+          "Emergency routing phone numbers not provided"
+        ],
+        "status": "success"
+      },
+      {
+        "account_id": "ACC-002",
+        "company_name": "Guardian Alarm & Sprinkler Co.",
+        "version": "v1",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-002\\v1",
+        "confidence": 0.6,
+        "unknowns": [
+          "Office address not provided",
+          "Emergency routing phone numbers not provided"
+        ],
+        "status": "success"
+      },
+      {
+        "account_id": "ACC-003",
+        "company_name": "Apex Electrical Services",
+        "version": "v1",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-003\\v1",
+        "confidence": 0.5,
+        "unknowns": [
+          "Office address not provided",
+          "Emergency routing phone numbers not provided"
+        ],
+        "status": "success"
+      },
+      {
+        "account_id": "ACC-004",
+        "company_name": "ComfortZone HVAC Solutions",
+        "version": "v1",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-004\\v1",
+        "confidence": 0.5,
+        "unknowns": [
+          "Office address not provided",
+          "Emergency routing phone numbers not provided"
+        ],
+        "status": "success"
+      },
+      {
+        "account_id": "ACC-005",
+        "company_name": "Summit Facility Maintenance",
+        "version": "v1",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-005\\v1",
+        "confidence": 0.5,
+        "unknowns": [
+          "Office address not provided",
+          "Emergency routing phone numbers not provided"
+        ],
+        "status": "success"
+      }
+    ]
+  },
+  "onboarding_results": {
+    "total": 5,
+    "success": 5,
+    "errors": 0,
+    "accounts": [
+      {
+        "account_id": "ACC-001",
+        "company_name": "FireShield Protection Services",
+        "version": "v2",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-001\\v2",
+        "confidence": 0.8,
+        "changes_count": 14,
+        "unknowns": [
+          "Office address not provided"
+        ],
+        "status": "success"
+      },
+      {
+        "account_id": "ACC-002",
+        "company_name": "Guardian Alarm & Sprinkler Co.",
+        "version": "v2",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-002\\v2",
+        "confidence": 1.0,
+        "changes_count": 13,
+        "unknowns": [],
+        "status": "success"
+      },
+      {
+        "account_id": "ACC-003",
+        "company_name": "Apex Electrical Services",
+        "version": "v2",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-003\\v2",
+        "confidence": 1.0,
+        "changes_count": 14,
+        "unknowns": [],
+        "status": "success"
+      },
+      {
+        "account_id": "ACC-004",
+        "company_name": "ComfortZone HVAC Solutions",
+        "version": "v2",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-004\\v2",
+        "confidence": 1.0,
+        "changes_count": 14,
+        "unknowns": [],
+        "status": "success"
+      },
+      {
+        "account_id": "ACC-005",
+        "company_name": "Summit Facility Maintenance",
+        "version": "v2",
+        "output_dir": "D:\\Clara\\outputs\\accounts\\ACC-005\\v2",
+        "confidence": 1.0,
+        "changes_count": 15,
+        "unknowns": [],
+        "status": "success"
+      }
+    ]
+  }
+}

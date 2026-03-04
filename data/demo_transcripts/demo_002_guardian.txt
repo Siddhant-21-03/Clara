@@ -1,0 +1,39 @@
+[Demo Call Transcript - Guardian Alarm & Sprinkler Co.]
+Date: 2026-02-18
+Participants: Sales Rep (Clara Team), Lisa Chen (Operations Manager, Guardian Alarm & Sprinkler Co.)
+
+Sales Rep: Hi Lisa, thanks for joining. Tell me about Guardian and what's going on with your call handling.
+
+Lisa Chen: Sure. So Guardian Alarm & Sprinkler is based in Chicago. We handle fire alarm monitoring, sprinkler installation and maintenance, and we recently started doing kitchen hood suppression systems too. We've got about 40 technicians and our phones ring constantly.
+
+Sales Rep: I can imagine. What's the biggest pain point right now?
+
+Lisa Chen: Honestly, it's after hours. We have a phone tree system right now but customers hate it. They press 1 for this, press 2 for that — half the time they just hang up. And our emergency calls get mixed in with people wanting to schedule routine inspections. We need something smarter.
+
+Sales Rep: Makes total sense. So what constitutes an emergency for you guys?
+
+Lisa Chen: Anything where there's an active fire alarm going off, a sprinkler leak or discharge, or if a system is completely down — like a building's fire alarm panel is offline. Those need immediate response, 24/7.
+
+Sales Rep: And non-emergencies?
+
+Lisa Chen: Scheduling inspections, requesting quotes, asking about their account status, things like that. Those can absolutely wait until business hours.
+
+Sales Rep: Got it. And what are your business hours roughly?
+
+Lisa Chen: We're open 7 AM to 6 PM Central, Monday through Friday. We do have a Saturday crew sometimes but that varies.
+
+Sales Rep: When an emergency comes in after hours, who should Clara try to reach?
+
+Lisa Chen: We have an on-call rotation. There's always someone. But the specifics of who and what numbers — I'd need to sort that out with my team before I give you final numbers.
+
+Sales Rep: No problem, we'll nail that down in onboarding. Let me show you a demo of Clara handling a call...
+
+[Demo interaction follows]
+
+Lisa Chen: That's way better than our phone tree. Customers would actually talk to this. One thing though — we're very strict about ServiceTrade. We do NOT want any sprinkler jobs created automatically in ServiceTrade. Our sprinkler team handles those manually because of the complexity. Alarm jobs can be auto-created though.
+
+Sales Rep: Great, that's exactly the kind of rule we configure. We'll document that.
+
+Lisa Chen: Perfect. I'm sold. Let's do it.
+
+Sales Rep: We'll schedule onboarding and go through everything in detail.

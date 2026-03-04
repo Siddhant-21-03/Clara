@@ -1,0 +1,49 @@
+[Onboarding Call Transcript - FireShield Protection Services]
+Date: 2026-02-28
+Participants: Onboarding Specialist (Clara Team), Mike Johnson (Owner, FireShield Protection Services), Sarah Miller (Office Manager, FireShield)
+
+Onboarding Specialist: Alright Mike, Sarah — let's get everything locked down so we can configure Clara perfectly for FireShield. Let's start with business hours.
+
+Mike Johnson: So our official hours are Monday through Friday, 8:00 AM to 5:00 PM Eastern. We're in Tampa, Florida, so Eastern time zone.
+
+Onboarding Specialist: Any weekend hours?
+
+Sarah Miller: No, weekends we're closed. But we still need emergency calls handled 24/7, including weekends and holidays.
+
+Onboarding Specialist: Understood. Let's define emergencies clearly. What situations should Clara treat as an emergency?
+
+Mike Johnson: Sprinkler head discharge or leak — that's number one. Active fire alarm that won't clear. Fire pump failure. And honestly, any situation where there's water damage happening from a sprinkler system. Oh, and if a building's fire suppression system is completely offline.
+
+Onboarding Specialist: Got it. And what about fire extinguisher calls? Emergency or no?
+
+Sarah Miller: No. Fire extinguisher stuff is never an emergency. Even if someone says their extinguishers are expired, that can wait until morning. We don't want those escalated after hours.
+
+Onboarding Specialist: Perfect. Now, for emergency calls after hours, who should Clara try to reach?
+
+Mike Johnson: First, try our on-call tech. Right now that's Danny Rivera, his cell is 813-555-0147. If Danny doesn't answer within 45 seconds, try me — Mike Johnson, 813-555-0199. If neither of us answers, Clara should take the caller's name, callback number, and the address of the emergency, and tell them someone will call back within 30 minutes.
+
+Onboarding Specialist: What about during business hours?
+
+Sarah Miller: During hours, all calls should come to me first at the main office line — 813-555-0100. If I don't answer in 30 seconds, transfer to Mike's cell. Same fallback — take a message if neither of us answers.
+
+Onboarding Specialist: Great. Non-emergency after-hours calls?
+
+Sarah Miller: Collect their name, number, and what they need. Let them know we'll call back the next business day. Don't try to transfer those.
+
+Onboarding Specialist: ServiceTrade integration — any rules?
+
+Mike Johnson: Yes, important. Never create sprinkler jobs in ServiceTrade automatically. Our sprinkler work is complex and we need to scope it manually. But for fire extinguisher service requests and inspection scheduling, Clara can create those jobs automatically.
+
+Sarah Miller: Also, fire alarm jobs can be auto-created in ServiceTrade for non-emergency requests.
+
+Onboarding Specialist: Any other special rules?
+
+Mike Johnson: If someone mentions a fire department inspection or a fire marshal visit, flag that as high priority even if it's not an emergency. Those have deadlines and we can't miss them.
+
+Sarah Miller: Oh, and our company greeting should be: "Thank you for calling FireShield Protection Services. This is Clara, how may I help you today?"
+
+Onboarding Specialist: Perfect. Let me read back the configuration...
+
+[Configuration readback and confirmation follows]
+
+Mike Johnson: That all sounds right. Let's go live.

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clara Answers - Pipeline Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #1e293b, #334155); padding: 30px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #475569; }
+        header h1 { font-size: 28px; color: #60a5fa; margin-bottom: 5px; }
+        header p { color: #94a3b8; font-size: 14px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 30px; }
+        .stat-card { background: #1e293b; border-radius: 10px; padding: 20px; border: 1px solid #334155; }
+        .stat-card .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-card .value { font-size: 32px; font-weight: 700; color: #60a5fa; margin-top: 5px; }
+        .stat-card .sub { font-size: 12px; color: #64748b; margin-top: 3px; }
+        .stat-card.success .value { color: #34d399; }
+        .stat-card.warning .value { color: #fbbf24; }
+        .stat-card.error .value { color: #f87171; }
+        h2 { font-size: 20px; color: #f1f5f9; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #334155; }
+        .accounts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .account-card { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; transition: transform 0.2s, border-color 0.2s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .account-card:hover { transform: translateY(-2px); border-color: #60a5fa; }
+        .account-card h3 { color: #f1f5f9; font-size: 18px; margin-bottom: 8px; }
+        .account-card .account-id { font-size: 12px; color: #60a5fa; font-family: monospace; background: #0f172a; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+        .account-card .services { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+        .account-card .services span { background: #334155; color: #94a3b8; padding: 2px 10px; border-radius: 20px; font-size: 11px; }
+        .version-badges { display: flex; gap: 8px; margin-top: 12px; }
+        .badge { padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+        .badge.v1 { background: #1e3a5f; color: #60a5fa; }
+        .badge.v2 { background: #14532d; color: #34d399; }
+        .badge.changes { background: #422006; color: #fbbf24; }
+        .confidence { margin-top: 10px; }
+        .confidence-bar { height: 6px; background: #334155; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+        .confidence-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+        .confidence-fill.high { background: #34d399; }
+        .confidence-fill.medium { background: #fbbf24; }
+        .confidence-fill.low { background: #f87171; }
+        .tasks-section { background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; margin-bottom: 30px; }
+        .task-list { list-style: none; }
+        .task-list li { padding: 10px 0; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center; }
+        .task-list li:last-child { border-bottom: none; }
+        .task-status { padding: 2px 10px; border-radius: 10px; font-size: 11px; }
+        .task-status.completed { background: #14532d; color: #34d399; }
+        .task-status.pending { background: #422006; color: #fbbf24; }
+        footer { text-align: center; padding: 20px; color: #475569; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Clara Answers Pipeline Dashboard</h1>
+            <p>AI Voice Agent Onboarding Automation — Demo Call → Retell Agent Draft → Onboarding Updates → Agent Revision</p>
+            <a href="/try" style="display: inline-block; margin-top: 14px; padding: 10px 24px; background: #60a5fa; color: #0f172a; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.2s;">🧪 Try Your Own Transcript</a>
+        </header>
+
+        {% if summary %}
+        <div class="stats-grid">
+            <div class="stat-card success">
+                <div class="label">Demo Transcripts</div>
+                <div class="value">{{ summary.demo_results.success }}/{{ summary.demo_results.total }}</div>
+                <div class="sub">Successfully processed</div>
+            </div>
+            <div class="stat-card success">
+                <div class="label">Onboarding Updates</div>
+                <div class="value">{{ summary.onboarding_results.success }}/{{ summary.onboarding_results.total }}</div>
+                <div class="sub">Successfully processed</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Pipeline Duration</div>
+                <div class="value">{{ summary.pipeline_run.duration_seconds }}s</div>
+                <div class="sub">Total execution time</div>
+            </div>
+            <div class="stat-card {% if summary.demo_results.errors + summary.onboarding_results.errors > 0 %}error{% else %}success{% endif %}">
+                <div class="label">Errors</div>
+                <div class="value">{{ summary.demo_results.errors + summary.onboarding_results.errors }}</div>
+                <div class="sub">Failed processing</div>
+            </div>
+        </div>
+        {% endif %}
+
+        <h2>📋 Accounts</h2>
+        <div class="accounts-grid">
+            {% for account in accounts %}
+            <a href="/account/{{ account.account_id }}" class="account-card">
+                <span class="account-id">{{ account.account_id }}</span>
+                <h3>{{ account.company_name or 'Unknown Company' }}</h3>
+                <div class="services">
+                    {% for service in (account.services or [])[:5] %}
+                    <span>{{ service }}</span>
+                    {% endfor %}
+                </div>
+                <div class="version-badges">
+                    {% if 'v1' in account.versions %}
+                    <span class="badge v1">v1 — Demo</span>
+                    {% endif %}
+                    {% if 'v2' in account.versions %}
+                    <span class="badge v2">v2 — Onboarded</span>
+                    {% endif %}
+                    {% if account.changes %}
+                    <span class="badge changes">{{ account.changes.total_changes }} changes</span>
+                    {% endif %}
+                </div>
+                {% if account.versions.get('v2', {}).get('spec', {}) %}
+                {% set conf = account.versions['v2']['spec'].get('metadata', {}).get('confidence_score', 0) %}
+                {% elif account.versions.get('v1', {}).get('spec', {}) %}
+                {% set conf = account.versions['v1']['spec'].get('metadata', {}).get('confidence_score', 0) %}
+                {% else %}
+                {% set conf = 0 %}
+                {% endif %}
+                <div class="confidence">
+                    <span style="font-size: 12px; color: #94a3b8;">Confidence: {{ (conf * 100)|int }}%</span>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill {% if conf >= 0.7 %}high{% elif conf >= 0.4 %}medium{% else %}low{% endif %}"
+                             style="width: {{ (conf * 100)|int }}%"></div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+
+        {% if tasks %}
+        <div class="tasks-section">
+            <h2>📝 Task Log</h2>
+            <ul class="task-list">
+                {% for task in tasks[-10:] %}
+                <li>
+                    <div>
+                        <strong>{{ task.task_id }}</strong>
+                        <span style="color: #94a3b8; font-size: 13px;"> — {{ task.description }}</span>
+                    </div>
+                    <span class="task-status {{ task.status }}">{{ task.status }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <footer>
+            Clara Answers Pipeline &copy; 2026 — Zero-cost automation for AI voice agent onboarding
+        </footer>
+    </div>
+</body>
+</html>

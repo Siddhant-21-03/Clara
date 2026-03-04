@@ -1,0 +1,43 @@
+[Demo Call Transcript - Summit Facility Maintenance]
+Date: 2026-02-25
+Participants: Sales Rep (Clara Team), Tom Bradley (VP of Operations, Summit Facility Maintenance)
+
+Sales Rep: Tom, thanks for your time. Tell me about Summit.
+
+Tom Bradley: Sure. Summit Facility Maintenance — we're a multi-trade facility services company. We handle everything: HVAC, plumbing, electrical, general maintenance, and janitorial oversight. We serve large commercial properties — office complexes, shopping malls, industrial parks. We're headquartered in Dallas, Texas but we have field offices in Houston and San Antonio too.
+
+Sales Rep: That's a bigger operation. What's the phone situation?
+
+Tom Bradley: Complex. We have different call flows for different service types. Right now we've got a call center with three people during the day. After hours, we have an outsourced answering service but they don't really understand our business. They can't tell the difference between a plumbing emergency and a routine request. Everything gets flagged as urgent and it burns out our on-call people.
+
+Sales Rep: So triage is the key issue.
+
+Tom Bradley: Exactly. We need intelligent triage. Not everything is an emergency. A leaky faucet at 10 PM is not the same as a burst pipe flooding a server room.
+
+Sales Rep: What are your clear emergency triggers?
+
+Tom Bradley: Burst pipes, flooding, anything structural — like a roof leak in an active workspace. Gas leaks, total HVAC failure in extreme weather, power outages affecting critical systems, and elevator entrapments.
+
+Sales Rep: That's a solid list. Business hours?
+
+Tom Bradley: Main office is 6 AM to 6 PM Central, Monday through Saturday. Sunday we have limited on-call only.
+
+Sales Rep: For after-hours emergencies, do you have a dispatch structure?
+
+Tom Bradley: Yeah, we have dispatchers. There's always supposed to be one on duty. But getting calls to them cleanly is the problem. Right now the answering service emails them, which is slow. We need real-time transfer.
+
+Sales Rep: That's exactly what Clara does. Real-time transfer with fallback logic.
+
+Tom Bradley: Good. The other thing is we have different teams for different trades. A plumbing emergency should go to the plumbing on-call, not the HVAC guy. Can Clara route by service type?
+
+Sales Rep: We can set up conditional routing based on what the caller describes. We'll configure all of that in detail during onboarding.
+
+Tom Bradley: OK. I'm interested. The scale is what concerns me — we handle hundreds of calls a day.
+
+Sales Rep: Clara scales well. Let me show you a demo...
+
+[Demo interaction follows]
+
+Tom Bradley: Alright, I'm convinced. But I want to do a thorough onboarding. There are a lot of nuances in our operation.
+
+Sales Rep: Absolutely. We'll schedule a detailed onboarding session. Talk soon.
